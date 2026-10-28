@@ -29,6 +29,11 @@ Labs grow in size and complexity: each one builds on the previous.
 | — | ACLs & Device Security | Standard/extended ACLs, SSH, port security | 📋 Planned |
 | — | Campus Network Capstone | All Level 1–2 topics combined | 📋 Planned |
 
+### 🔧 Physical Lab — real Cisco hardware
+| # | Lab | Topics | Status |
+|---|-----|--------|--------|
+| P01 | [Cisco Boot Process & Config Register](./P01-boot-and-config-register/) | Config register, ROMMON, password recovery, TFTP backup, AutoInstall — hybrid 1841 + GNS3 | 🚧 In progress |
+
 ### 🔴 Level 3 — Service Provider (CCNP SP)
 | # | Lab | Topics | Status |
 |---|-----|--------|--------|
@@ -73,6 +78,7 @@ networking-portfolio/
 │   ├── verification/             ← show command outputs
 │   └── gns3/                     ← GNS3 project file
 ├── 02-inter-vlan-svi/            ← same layout for every lab
+├── P01-boot-and-config-register/ ← physical lab (console logs instead of GNS3 files)
 └── templates/
     └── LAB_README_TEMPLATE.md    ← template for new labs
 ```

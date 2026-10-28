@@ -1,0 +1,205 @@
+Router>
+Router>
+Router>
+Router>
+Router>en
+Router#show ver
+Router#show version
+Cisco IOS Software, 1841 Software (C1841-ADVSECURITYK9-M), Version 12.4(10c), RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Mon 23-Jul-07 19:55 by prod_rel_team
+
+ROM: System Bootstrap, Version 12.4(13r)T, RELEASE SOFTWARE (fc1)
+
+Router uptime is 24 minutes
+System returned to ROM by reload at 15:27:50 UTC Wed Oct 28 2026
+System image file is "flash:c1841-image"
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+ ttp://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco 1841 (revision 7.0) with 115712K/15360K bytes of memory.
+Processor board ID <redacted>
+2 FastEthernet interfaces
+2 Low-speed serial(sync/async) interfaces
+1 Virtual Private Network (VPN) Module
+DRAM configuration is 64 bits wide with parity disabled.
+191K bytes of NVRAM.
+63808K bytes of ATA CompactFlash (Read/Write)
+
+Configuration register is 0x2102
+
+Router#conf
+Router#configure  ter
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int
+Router(config)#interface f
+Router(config)#interface fastEthernet 0/0
+Router(config-if)#ip add
+Router(config-if)#ip address 10.0.0.2 255.255.255.0
+Router(config-if)#no hsu
+Router(config-if)#no shu
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#end
+Router#wri
+*Oct 28 15:53:28.359: %SYS-5-CONFIG_I: Configured from console by consolete
+Building configuration...
+
+*Oct 28 15:53:28.827: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Oct 28 15:53:29.831: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up[OK]
+Router#
+
+Router con0 is now available
+
+Press RETURN to get started.
+
+Router>
+Router>
+Router>
+Router>en
+Router#show ip in
+Router#show ip int br
+Router#show ip int brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            10.0.0.2        YES manual up                    up
+FastEthernet0/1            unassigned      YES unset  administratively down down
+Serial0/1/0                unassigned      YES unset  administratively down down
+Serial0/1/1                unassigned      YES unset  administratively down down
+Router#ping 10.0.0.254
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.0.0.254, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+Router#ping 10.0.0.3
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.0.0.3, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/1/1 ms
+Router#
+
+Router con0 is now available
+
+Press RETURN to get started.
+
+Router>
+Router>
+Router>
+Router>
+Router>
+Router>
+Router>en
+Router#show flash
+-#- --length-- -----date/time------ path
+1     20967448 Feb 23 1907 20:15:44 +00:00 c1841-image
+
+44154880 bytes available (20971520 bytes used)
+
+Router#
+
+Router con0 is now available
+
+Press RETURN to get started.
+
+Router>
+Router>
+Router>en
+Router#show flash
+Router#show flash:
+-#- --length-- -----date/time------ path
+1     20967448 Feb 23 1907 20:15:44 +00:00 c1841-image
+
+44154880 bytes available (20971520 bytes used)
+
+Router#show run
+Router#show running-config
+Building configuration...
+
+Current configuration : 676 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+ip cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.0.0.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Serial0/1/0
+ no ip address
+ shutdown
+ clock rate 125000
+!
+interface Serial0/1/1
+ no ip address
+ shutdown
+ clock rate 125000
+!
+!
+ip http server
+no ip http secure-server
+!
+!
+!
+control-plane
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+scheduler allocate 20000 1000
+end
+
+Router# copy run
+Router# copy running-config t
+Router# copy running-config tftp:
+Address or name of remote host []? 10.0.0.3
+Destination filename [router-confg]? r2-config
+!!
+676 bytes copied in 1.048 secs (645 bytes/sec)
+Router#

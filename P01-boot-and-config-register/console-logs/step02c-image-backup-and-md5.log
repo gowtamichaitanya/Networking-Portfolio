@@ -1,0 +1,132 @@
+Router>
+Router>
+Router>en
+Router#ver
+Router#verify ?
+  /md5    Compute an md5 signature for a file
+  flash:  File to be verified
+  nvram:  File to be verified
+
+Router#verify /md
+Router#verify /md5 ?
+  archive:  File to be verified
+  cns:      File to be verified
+  flash:    File to be verified
+  ftp:      File to be verified
+  http:     File to be verified
+  https:    File to be verified
+  null:     File to be verified
+  nvram:    File to be verified
+  rcp:      File to be verified
+  scp:      File to be verified
+  system:   File to be verified
+  tftp:     File to be verified
+  xmodem:   File to be verified
+  ymodem:   File to be verified
+
+Router#verify /md5 fl
+Router#verify /md5 flash:?
+flash:c1841-image
+
+Router#verify /md5 flash:c18
+Router#verify /md5 flash:c1841-image
+...........[progress dots trimmed]...........Done!
+verify /md5 (flash:c1841-image) = 1670ad91fc39f7da598ffbd37f72760d
+
+Router#exit
+
+Router con0 is now available
+
+Press RETURN to get started.
+
+Router>
+Router>
+Router>
+Router>
+Router>en
+Router#copy fl
+Router#copy flash:c
+Router#copy flash:c1841-image tf
+Router#copy flash:c1841-image tftp:
+Address or name of remote host []? 10.0.0.3
+Destination filename [c1841-image]?
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+20967448 bytes copied in 68.404 secs (306524 bytes/sec)
+Router#ver
+Router#verify m
+Router#verify ch
+Router#verify ?
+  /md5    Compute an md5 signature for a file
+  flash:  File to be verified
+  nvram:  File to be verified
+
+Router#verify /md
+Router#verify /md5 ?
+  archive:  File to be verified
+  cns:      File to be verified
+  flash:    File to be verified
+  ftp:      File to be verified
+  http:     File to be verified
+  https:    File to be verified
+  null:     File to be verified
+  nvram:    File to be verified
+  rcp:      File to be verified
+  scp:      File to be verified
+  system:   File to be verified
+  tftp:     File to be verified
+  xmodem:   File to be verified
+  ymodem:   File to be verified
+
+Router#verify /md5 f
+Router#verify /md5 fla
+Router#verify /md5 flash:c
+Router#verify /md5 flash:c1841-image
+...........[progress dots trimmed]...........Done!
+verify /md5 (flash:c1841-image) = 1670ad91fc39f7da598ffbd37f72760d
+
+Router#exit
+
+Router con0 is now available
+
+Press RETURN to get started.
+
+Router>
+Router>
+Router>
+Router>
+Router>
+Router>
+Router>en
+Router#ver
+Router#verify /m
+Router#verify /md5 ?
+  archive:  File to be verified
+  cns:      File to be verified
+  flash:    File to be verified
+  ftp:      File to be verified
+  http:     File to be verified
+  https:    File to be verified
+  null:     File to be verified
+  nvram:    File to be verified
+  rcp:      File to be verified
+  scp:      File to be verified
+  system:   File to be verified
+  tftp:     File to be verified
+  xmodem:   File to be verified
+  ymodem:   File to be verified
+
+Router#verify /md5 t
+Router#verify /md5 tftp://10.0.0.3/ 
+Router#verify /md5 tftp://10.0.0.3/c18
+Router#verify /md5 tftp://10.0.0.3/c18
+Router#verify /md5 tftp://10.0.0.3/c1841-image
+Loading c1841-image from 10.0.0.3 (via FastEthernet0/0): !......[TFTP progress trimmed]......
+[OK - 20967448 bytes]
+.Done!
+verify /md5 (tftp://10.0.0.3/c1841-image) = 1670ad91fc39f7da598ffbd37f72760d
+
+Router#exit
+
+Router con0 is now available
+
+Press RETURN to get started.
