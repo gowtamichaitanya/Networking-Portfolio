@@ -111,6 +111,43 @@ The packet crosses the trunk **twice** — once up, once down. That's the "stick
 
 ---
 
+## 🦈 Packet Capture — Following One Ping
+
+I captured a ping from PC1 → PC2 at all three links with Wireshark to watch the frame change hop by hop.
+
+| Capture point | 802.1Q tag | Src MAC | Dst MAC | TTL | Frame size |
+|---------------|-----------|---------|---------|-----|------------|
+| ① PC1 → SW1 (access) | — untagged | PC1 `00:50:79:66:68:00` | R1 `0c:fb:8e:7f:00:01` | 64 | 98 bytes |
+| ② SW1 → R1 (trunk, going up) | **VLAN 10** | PC1 `00:50:79:66:68:00` | R1 `0c:fb:8e:7f:00:01` | 64 | 102 bytes |
+| ③ R1 → SW1 (trunk, coming down) | **VLAN 20** | R1 `0c:fb:8e:7f:00:01` | PC2 `00:50:79:66:68:01` | **63** | 102 bytes |
+| ④ SW1 → PC2 (access) | — untagged | R1 `0c:fb:8e:7f:00:01` | PC2 `00:50:79:66:68:01` | 63 | 98 bytes |
+
+### ① Access link (PC1 side) — no VLAN tag
+![PC1 access link](./captures/01-pc1-access-untagged.png)
+*PC1 doesn't know VLANs exist: plain Ethernet II, Type `0x0800` (IPv4). Destination MAC is already R1 — PC1 is sending to its gateway.*
+
+### ② Trunk, going up — tagged VLAN 10
+![Trunk VLAN 10](./captures/02-trunk-vlan10.png)
+*SW1 inserted an 802.1Q header with `ID: 10`. Ethernet Type is now `0x8100`, and the frame grew from 98 to 102 bytes — the 4-byte tag. MACs and TTL are unchanged: a switch doesn't touch Layer 3.*
+
+### ③ Trunk, coming down — tagged VLAN 20
+![Trunk VLAN 20](./captures/03-trunk-vlan20.png)
+*Same ping (same ICMP id/seq), same physical link — but now `ID: 20`. R1 routed it: source MAC rewritten to R1, destination MAC is PC2, TTL decremented 64 → 63. The ARP exchanges for 10.0.10.254 and 20.0.20.254 are also visible at the top. Wireshark shows each request twice on this link (TTL 64 and TTL 63) — that's the packet crossing the trunk up and back down.*
+
+### ④ Access link (PC2 side) — tag removed
+![PC2 access link](./captures/04-pc2-access-untagged.png)
+*SW1 stripped the tag before sending out the access port. PC2 receives a normal untagged frame with TTL 63 — proof it passed through exactly one router.*
+
+### Key observations
+- **Tagging happens only on the trunk.** Access ports send and receive untagged frames; the switch adds the tag on ingress to the trunk and removes it on egress to an access port.
+- **The same packet crosses the trunk twice** with two different tags — the defining behaviour of router-on-a-stick.
+- **Both sub-interfaces share one MAC** (`0c:fb:8e:7f:00:01`) — they're logical interfaces on the same physical port.
+- **L2 header is rebuilt at the router, L3 is preserved.** IP addresses stay 10.0.10.1 → 20.0.20.1 end to end; only MACs, VLAN tag and TTL change.
+
+📁 Capture files (open in Wireshark): [pc1-access.pcapng](./captures/pc1-access.pcapng) · [trunk.pcapng](./captures/trunk.pcapng) · [pc2-access.pcapng](./captures/pc2-access.pcapng)
+
+---
+
 ## ✅ Verification
 
 Command outputs go in [`verification/`](./verification/).
