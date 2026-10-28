@@ -16,9 +16,10 @@ Labs grow in size and complexity: each one builds on the previous.
 | # | Lab | Topics | Status |
 |---|-----|--------|--------|
 | 01 | [Inter-VLAN Routing — Router-on-a-Stick](./01-router-on-a-stick/) | VLANs, 802.1Q trunk, dot1Q sub-interfaces | ✅ Done |
-| 02 | Inter-VLAN Routing — SVIs on a Layer 3 Switch | SVIs, `ip routing`, ROAS vs SVI | 🔜 Next |
-| 03 | Static & Default Routing | Static routes, floating statics | 📋 Planned |
-| 04 | DHCP & NAT/PAT | DHCP server/relay, static NAT, PAT | 📋 Planned |
+| 02 | [Inter-VLAN Routing — SVIs on a Layer 3 Switch](./02-inter-vlan-svi/) | SVIs, `ip routing`, transit VLAN, ROAS vs SVI | ✅ Done |
+| 03 | Trunks, Native VLAN & DTP | 802.1Q native VLAN, mismatch, DTP | 🔜 Next |
+| 04 | Static & Default Routing | Static routes, floating statics | 📋 Planned |
+| 05 | DHCP & NAT/PAT | DHCP server/relay, static NAT, PAT | 📋 Planned |
 
 ### 🟡 Level 2 — Building Networks (CCNA)
 | # | Lab | Topics | Status |
@@ -71,6 +72,7 @@ networking-portfolio/
 │   ├── diagrams/                 ← topology screenshot
 │   ├── verification/             ← show command outputs
 │   └── gns3/                     ← GNS3 project file
+├── 02-inter-vlan-svi/            ← same layout for every lab
 └── templates/
     └── LAB_README_TEMPLATE.md    ← template for new labs
 ```

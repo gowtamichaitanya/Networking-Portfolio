@@ -187,3 +187,7 @@ Command outputs go in [`verification/`](./verification/).
 2. Open `gns3/ROAS.gns3` (your image names must match) or build the topology from the diagram.
 3. Paste `configs/R1.cfg` and `configs/SW1.cfg` into the consoles; load `PC1.vpc` / `PC2.vpc` into VPCS.
 4. Run the verification commands.
+
+---
+
+➡️ Next: [Lab 02 — Inter-VLAN Routing with SVIs](../02-inter-vlan-svi/)
