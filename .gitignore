@@ -1,0 +1,9 @@
+   *.qcow2
+   *.img
+   *.bin
+   *.image
+   *.iso
+   *.vmdk
+   project-files/qemu/
+   *.gns3.backup
+   *.log
