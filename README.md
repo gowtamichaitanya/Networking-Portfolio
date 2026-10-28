@@ -79,6 +79,6 @@ networking-portfolio/
 
 ## 📬 Connect
 
-- GitHub: [@YOUR-USERNAME](https://github.com/YOUR-USERNAME)
+- GitHub: [@gowtamichaitanya](https://github.com/gowtamichaitanya)
 - LinkedIn: _add link_
 - YouTube: **Networking Made Easy** _(coming soon)_
